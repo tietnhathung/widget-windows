@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+ xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+ xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+ xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+ xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+ IgnorableNamespaces="uap uap3 com rescap">
+ <Identity Name="Hungtn.AIQuotaWidget" Publisher="CN=LocalWidget" Version="1.0.5.0" ProcessorArchitecture="x64"/>
+ <Properties><DisplayName>AI Quota</DisplayName><PublisherDisplayName>LocalWidget</PublisherDisplayName><Logo>Assets\Store.png</Logo></Properties>
+ <Dependencies>
+  <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.22000.0" MaxVersionTested="10.0.26100.0"/>
+  <PackageDependency Name="Microsoft.WindowsAppRuntime.1.8" MinVersion="8000.0.0.0" Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"/>
+ </Dependencies>
+ <Resources><Resource Language="vi-VN"/></Resources>
+ <Applications><Application Id="App" Executable="QuotaWidget.exe" EntryPoint="Windows.FullTrustApplication">
+  <uap:VisualElements DisplayName="AI Quota" Description="Hạn mức AI còn lại" BackgroundColor="transparent" Square150x150Logo="Assets\Tile.png" Square44x44Logo="Assets\Icon.png" AppListEntry="none"/>
+  <Extensions>
+   <com:Extension Category="windows.comServer"><com:ComServer><com:ExeServer Executable="QuotaWidget.exe" Arguments="-RegisterProcessAsComServer" DisplayName="AI Quota"><com:Class Id="9D71363E-AEB1-4F50-BFD5-648BF87618CF" DisplayName="AI Quota"/></com:ExeServer></com:ComServer></com:Extension>
+   <uap3:Extension Category="windows.appExtension"><uap3:AppExtension Name="com.microsoft.windows.widgets" Id="QuotaWidget" DisplayName="AI Quota" PublicFolder="Public"><uap3:Properties>
+    <WidgetProvider><ProviderIcons><Icon Path="Assets\Icon.png"/></ProviderIcons>
+     <Activation><CreateInstance ClassId="9D71363E-AEB1-4F50-BFD5-648BF87618CF"/></Activation>
+     <Definitions><Definition Id="AIQuota" DisplayName="AI Quota" Description="Hạn mức còn lại của ChatGPT, Antigravity và Claude">
+      <Capabilities><Capability><Size Name="small"/></Capability><Capability><Size Name="medium"/></Capability><Capability><Size Name="large"/></Capability></Capabilities>
+      <ThemeResources><Icons><Icon Path="Assets\Icon.png"/></Icons><Screenshots><Screenshot Path="Assets\Preview.png" DisplayAltText="Ba dịch vụ và hạn mức còn lại"/></Screenshots></ThemeResources>
+     </Definition></Definitions>
+    </WidgetProvider>
+   </uap3:Properties></uap3:AppExtension></uap3:Extension>
+  </Extensions>
+ </Application></Applications>
+ <Capabilities><rescap:Capability Name="runFullTrust"/></Capabilities>
+</Package>
